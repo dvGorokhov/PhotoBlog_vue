@@ -1,17 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Header />
+    <h1>My Photo Blog</h1>
+    <hr />
+    <router-view />
+    <button @click="name" class="btn btn-danger">click</button>
+    {{ a }}
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header/Header.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+  },
+  data() {
+    return {
+      a: "1",
+      showPart: 1,
+      str: "some text",
+    };
+  },
+  methods: {
+    name() {
+      this.a = this.a * 5;
+      this.showPart = this.showPart === 1 ? 2 : 1;
+    },
+  },
+};
 </script>
 
 <style>
@@ -21,6 +40,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 </style>
