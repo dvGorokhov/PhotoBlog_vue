@@ -49,7 +49,7 @@ export default {
             "token",
             JSON.stringify(response.data.access_token)
           );
-          wm.$router.push("adm_cat");
+          wm.$router.push({ name: "adm_cat" });
         })
         .catch(function (error) {
           console.log(error);
