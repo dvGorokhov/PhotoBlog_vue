@@ -4,7 +4,12 @@
     <div v-if="part === 2" class="dng">part2</div>
     <div>{{ str }}</div>
     <div v-if="all_cats.length > 0" class="row">
-      <div class="category col" v-for="cat in all_cats" v-bind:key="cat.id">
+      <div
+        class="category col"
+        @click="goToPhoto(cat.id)"
+        v-for="cat in all_cats"
+        v-bind:key="cat.id"
+      >
         <img :src="cat.cat_img_url" :alt="cat.name" />
         <span>{{ cat.name }}</span>
       </div>
@@ -37,18 +42,17 @@ export default {
   methods: {
     show_cat() {
       axios
-        .get("http://127.0.0.1:8000/api/auth/category", {
-          headers: {
-            Authorization:
-              "Bearer " + JSON.parse(localStorage.getItem("token")),
-          },
-        })
+        .get("http://127.0.0.1:8000/api/auth/category")
         .then((response) => {
           this.all_cats = response.data;
         })
         .catch(function (error) {
           console.log(error);
         });
+    },
+    goToPhoto(id) {
+      let wm = this;
+      wm.$router.push({ name: "photo", params: { category_id: id } });
     },
   },
 };
@@ -63,13 +67,13 @@ img {
 span {
   display: block;
 }
+.category:hover {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid grey;
+}
 div {
   color: #42b983;
-  .category {
-    color: salmon;
-    margin: 0 auto;
-    max-width: 250px;
-  }
 }
 .dng {
   color: crimson;
