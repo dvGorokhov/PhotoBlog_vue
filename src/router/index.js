@@ -14,9 +14,10 @@ const routes = [
     component: Category
   },
   {
-    path: '/photo',
+    path: '/photo/:category_id',
     name: 'photo',
-    component: Photo
+    component: Photo,
+    props: true
   },
   {
     path: '/admin/login',
@@ -31,7 +32,8 @@ const routes = [
   {
     path: '/admin/photo/:category_id',
     name: 'adm_photo',
-    component: PhotoAdmin
+    component: PhotoAdmin,
+    props: true
   },
 ]
 const router = createRouter({

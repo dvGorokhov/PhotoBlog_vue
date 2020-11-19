@@ -16,7 +16,9 @@
       <tbody>
         <tr v-for="(cat, index) in all_cats" v-bind:key="cat.id">
           <td>{{ cat.id }}</td>
-          <td>{{ cat.name }}</td>
+          <td @click="go_to_photo(cat.id)">
+            <button class="name btn-primary">{{ cat.name }}</button>
+          </td>
           <td>{{ cat.cat_img_url }}</td>
           <td><button @click="showModal(index)">1</button></td>
           <td><button @click="delete_cat(index)">2</button></td>
@@ -131,9 +133,16 @@ export default {
         cat_img_url: "",
       };
     },
+    go_to_photo(id) {
+      let wm = this;
+      wm.$router.push({ name: "adm_photo", params: { category_id: id } });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.name {
+  width: 120px;
+}
 </style>

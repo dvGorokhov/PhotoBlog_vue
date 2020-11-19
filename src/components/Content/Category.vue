@@ -42,6 +42,7 @@ export default {
     goToPhoto(id) {
       let wm = this;
       wm.$router.push({ name: "photo", params: { category_id: id } });
+      //wm.$router.push("/photo/" + id);
     },
   },
 };
