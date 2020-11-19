@@ -19,7 +19,7 @@
           <td>{{ cat.name }}</td>
           <td>{{ cat.cat_img_url }}</td>
           <td><button @click="showModal(index)">1</button></td>
-          <td><button>2</button></td>
+          <td><button @click="delete_cat(index)">2</button></td>
         </tr>
       </tbody>
     </table>
@@ -68,6 +68,26 @@ export default {
               "Bearer " + JSON.parse(localStorage.getItem("token")),
           },
         })
+        .then(() => {
+          this.show_all();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    delete_cat(index) {
+      axios
+        .delete(
+          "http://127.0.0.1:8000/api/auth/category" +
+            "/" +
+            this.all_cats[index].id,
+          {
+            headers: {
+              Authorization:
+                "Bearer " + JSON.parse(localStorage.getItem("token")),
+            },
+          }
+        )
         .then(() => {
           this.show_all();
         })

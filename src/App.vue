@@ -4,8 +4,6 @@
     <h1>My Photo Blog</h1>
     <hr />
     <router-view />
-    <button @click="name" class="btn btn-danger">click</button>
-    {{ a }}
   </div>
 </template>
 
@@ -16,19 +14,6 @@ export default {
   name: "App",
   components: {
     Header,
-  },
-  data() {
-    return {
-      a: "1",
-      showPart: 1,
-      str: "some text",
-    };
-  },
-  methods: {
-    name() {
-      this.a = this.a * 5;
-      this.showPart = this.showPart === 1 ? 2 : 1;
-    },
   },
 };
 </script>
